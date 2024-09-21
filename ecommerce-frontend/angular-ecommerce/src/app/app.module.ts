@@ -9,11 +9,14 @@ import { ProductService } from './services/product.service';
 import { RouterModule, Routes } from '@angular/router';
 import { ProductCategoryComponent } from './common/product-category/product-category.component';
 import { ProductCategoryMenuComponent } from './components/product-category-menu/product-category-menu.component';
+import { SearchComponent } from './components/search/search.component';
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes =[
   {path: 'category/:id/:name', component: ProductListComponent},
   { path: 'category', component: ProductListComponent},
   { path: 'products', component: ProductListComponent},
+  { path: 'search/:keyword', component: ProductListComponent},
   { path: '', redirectTo: '/products', pathMatch: 'full'},
   { path: '**', redirectTo: '/products', pathMatch: 'full'}
 ];
@@ -24,12 +27,14 @@ const routes: Routes =[
     AppComponent,
     ProductListComponent,
     ProductCategoryMenuComponent,
-    ProductCategoryComponent
+    ProductCategoryComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    FormsModule
     ],
   providers: [
     ProductService, 
