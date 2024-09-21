@@ -536,9 +536,14 @@ input.au-input.au-input-xl{
     outline: 0;
     margin-left: 5px;
 }
-.product-box{
-    margin-bottom:60px
+.product-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    padding: 10px;
 }
+
 .price{
     margin:15px 0 0;
     font-weight:800;
@@ -976,9 +981,12 @@ footer ul li{
     .footer-pagination{
         text-align:center
     }
-    .product-box{
-        text-align:centerg
+    .product-box img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover; /* lub contain, jeśli chcesz zachować proporcje */
     }
+    
     .page-container{
         position:relative;
         top:66px;
