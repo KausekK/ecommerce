@@ -14,7 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 
 const routes: Routes =[
-  { path: 'category/:id', component: ProductListComponent},
+  { path: 'category/:id/:name', component: ProductListComponent},
   { path: 'category', component: ProductListComponent},
   { path: 'products', component: ProductListComponent},
   { path: 'search/:keyword', component: ProductListComponent},
