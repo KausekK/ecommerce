@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -12,6 +12,10 @@ import { ProductCategoryMenuComponent } from './components/product-category-menu
 import { SearchComponent } from './components/search/search.component';
 import { FormsModule } from '@angular/forms';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
+import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
+import { MatPaginatorModule } from '@angular/material/paginator'; 
+
 
 const routes: Routes =[
   { path: 'category/:id/:name', component: ProductListComponent},
@@ -37,8 +41,11 @@ const routes: Routes =[
     BrowserModule,
     AppRoutingModule,
     RouterModule.forRoot(routes),
-    FormsModule
-    ],
+    FormsModule,
+    NgbModule,
+    BrowserAnimationsModule,
+    MatPaginatorModule
+  ],
   providers: [
     ProductService, 
     provideHttpClient(withInterceptorsFromDi()) 

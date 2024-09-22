@@ -3,6 +3,7 @@
  * Common CSS
  * ----------------------------
  */
+ @import '@angular/material/prebuilt-themes/indigo-pink.css'; 
 
  *{
     margin:0;
@@ -1046,3 +1047,5 @@ footer ul li{
         padding:8px 0
     }
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

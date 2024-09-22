@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../services/product.service';
 import { Product } from '../../common/product';
 import { ActivatedRoute } from '@angular/router';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-product-list',
@@ -11,9 +12,15 @@ import { ActivatedRoute } from '@angular/router';
 export class ProductListComponent implements OnInit{
 
   products: Product[] = [];
-  currentCategoryId: number = 0;
+  currentCategoryId: number = 1;
+  previousCategoryId: number = 1;
+
   currentCategoryName: string = "";
   searchMode: boolean = false;
+
+  pageNumber: number = 1;
+  pageSize: number = 10;
+  totalElement: number = 0;
 
   constructor(private productService: ProductService,
     private route: ActivatedRoute
@@ -23,9 +30,14 @@ export class ProductListComponent implements OnInit{
   ngOnInit(): void {
     this.route.paramMap.subscribe(() =>{
       this.listProducts()
-
     }
     )
+  }
+
+  onPageChange(event: PageEvent) {
+    this.pageNumber = event.pageIndex + 1;  
+    this.pageSize = event.pageSize;
+    this.listProducts(); 
   }
 
   listProducts(){
@@ -58,13 +70,21 @@ handleListProducts(){
     this.currentCategoryId = 1;
     this.currentCategoryName = 'Books';
   }
-  
-  
-    this.productService.getProductList(this.currentCategoryId).subscribe(
+
+  if(this.previousCategoryId != this.currentCategoryId){
+    this.pageNumber = 1;
+  }
+
+  this.previousCategoryId = this.currentCategoryId;
+
+    this.productService.getProductListPaginate(this.pageNumber - 1, this.pageSize, this.currentCategoryId).subscribe(
       data => {
-        this.products = data;
+        this.products = data._embedded.products;
+        this.pageNumber = data.page.number + 1;
+        this.pageSize = data.page.size;
+        this.totalElement = data.page.totalElements;
       }
-    )
+    );
 }
 
 }
