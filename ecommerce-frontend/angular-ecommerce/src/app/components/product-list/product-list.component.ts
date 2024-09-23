@@ -14,6 +14,7 @@ export class ProductListComponent implements OnInit{
   products: Product[] = [];
   currentCategoryId: number = 1;
   previousCategoryId: number = 1;
+  previousKeyword: string = ""
 
   currentCategoryName: string = "";
   searchMode: boolean = false;
@@ -53,9 +54,18 @@ export class ProductListComponent implements OnInit{
 handleSearchProducts(){
   const keyword =this.route.snapshot.paramMap.get('keyword')!;
 
-  this.productService.searchProducts(keyword).subscribe(
+  if(this.previousKeyword != keyword){
+      this.pageNumber = 1;
+  }
+
+  this.previousKeyword = keyword;
+
+  this.productService.searchProductsPaginate(this.pageNumber - 1, this.pageSize, keyword).subscribe(
     data =>{
-      this.products = data;
+      this.products = data._embedded.products;
+      this.pageNumber = data.page.number + 1;
+      this.pageSize = data.page.size;
+      this.totalElement = data.page.totalElements;
 })
 }
 
