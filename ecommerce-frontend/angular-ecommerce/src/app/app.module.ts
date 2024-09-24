@@ -14,7 +14,8 @@ import { FormsModule } from '@angular/forms';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
-import { MatPaginatorModule } from '@angular/material/paginator'; 
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { CartStatusComponent } from './components/cart-status/cart-status.component'; 
 
 
 const routes: Routes =[
@@ -35,7 +36,8 @@ const routes: Routes =[
     ProductCategoryMenuComponent,
     ProductCategoryComponent,
     SearchComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    CartStatusComponent
   ],
   imports: [
     BrowserModule,
