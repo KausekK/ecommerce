@@ -15,10 +15,12 @@ import { ProductDetailsComponent } from './components/product-details/product-de
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { CartStatusComponent } from './components/cart-status/cart-status.component'; 
+import { CartStatusComponent } from './components/cart-status/cart-status.component';
+import { CartDetailsComponent } from './components/cart-details/cart-details.component'; 
 
 
 const routes: Routes =[
+  { path: 'cart-details', component: CartDetailsComponent},
   { path: 'category/:id/:name', component: ProductListComponent},
   { path: 'category', component: ProductListComponent},
   { path: 'products', component: ProductListComponent},
@@ -37,7 +39,8 @@ const routes: Routes =[
     ProductCategoryComponent,
     SearchComponent,
     ProductDetailsComponent,
-    CartStatusComponent
+    CartStatusComponent,
+    CartDetailsComponent
   ],
   imports: [
     BrowserModule,
